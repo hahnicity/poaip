@@ -1,7 +1,9 @@
 (defun powers (a b)
- "Raise a to the b power (a^b)"
- "I thought I was going to do this from scratch. 1 hour later I have said Fuck that"
- (expt a b)
+    "Raise a to the b power (a^b)"
+    (cond
+        ((equal b 0) 1)
+        (t (* a (powers a (- b 1))))
+    )
 )
 
 (print (powers 3 2))
