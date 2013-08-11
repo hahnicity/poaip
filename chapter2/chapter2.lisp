@@ -1,8 +1,10 @@
 ;;;; chapter2.lisp
 
-(in-package #:chapter2)
+(in-package #:chapter2)  ; It seems like this line is pretty essential to visibility
+                         ; of functions/variables across the pkg
+                         ; I'm very unclear of why i have to do this manually in the interpreter
 
-(defparameter *simple-grammer*
+(defparameter *simple-grammar*
   '((sentence -> (noun-phrase verb-phrase))
     (noun-phrase -> (Article Noun))
     (verb-phrase -> (Verb noun-phrase))
@@ -27,5 +29,15 @@
 
 (defun rewrites (category)
   "Returns a list of the possible rewrites for this category"
-  (rule-rhs (assoc category *grammer*))
+  (rule-rhs (assoc category *grammar*))
+)
+
+(defun random-elt (choices)
+  "Choose an element from a list at random"
+  (elt choices (random (length choices)))
+)
+
+(defun mappend (fn list-)
+  "Apply to each element of the list and append the results"
+  (apply #'append (mapcar fn list-))
 )
