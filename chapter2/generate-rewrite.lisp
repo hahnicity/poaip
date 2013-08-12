@@ -7,16 +7,16 @@
 
 (in-package #:chapter2)
 
-(defun generate (phrase)
+(defun generate-rewrite (phrase)
   (let ((choices nil)))
   (cond
-    ((listp phrase) (mappend #'generate phrase))  ; Phrase is a list
-    ((setf choices (rewrites phrase)) (generate (random-elt choices)))
+    ((listp phrase) (mappend #'generate-rewrite phrase))  ; Phrase is a list
+    ((setf choices (rewrites phrase)) (generate-rewrite (random-elt choices)))
     (t (list phrase))
   )
 )
 
 
-(defun main (phrase)
-  (generate phrase)
+(defun exercise-one-main (phrase)
+  (generate-rewrite phrase)
 )

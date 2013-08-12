@@ -7,14 +7,21 @@
 (defparameter *simple-grammar*
   '((sentence -> (noun-phrase verb-phrase))
     (noun-phrase -> (Article Noun))
-    (verb-phrase -> (Verb noun-phrase))
-    (Article -> the a)
-    (Noun -> man ball woman table)
-    (Verb -> hit took saw liked))
+    (verb-phrase -> (Verb noun-phrase)))
+)
+
+(defparameter *simple-vocabulary*
+    '((Article -> the a)
+      (Noun -> man ball woman table)
+      (Verb -> hit took saw liked))
 )
 
 (defvar *grammar* *simple-grammar*
   "This is here because variables CAN be changed at runtime, parameters cannot"
+)
+
+(defvar *vocabulary* *simple-vocabulary*
+  "Set the desired vocabulary to a simple set"
 )
 
 (defun rule-lhs (rule)
@@ -28,8 +35,11 @@
 )
 
 (defun rewrites (category)
-  "Returns a list of the possible rewrites for this category"
-  (rule-rhs (assoc category *grammar*))
+  "Returns a list of the possible rewrites for this category. Return set of vocabulary if it is desired"
+  (cond
+    ((member category *vocabulary*) (assoc category *vocabulary*))
+    (t (rule-rhs (assoc category *grammar*)))
+  )
 )
 
 (defun random-elt (choices)
