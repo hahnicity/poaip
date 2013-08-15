@@ -8,5 +8,6 @@
   :components ((:file "package")
                (:file "chapter2")
                (:file "generate-rewrite")
-               (:file "generate-efficiency")))
+               (:file "generate-efficiency")
+               (:file "custom-grammar")))
 

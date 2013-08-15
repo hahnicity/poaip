@@ -23,11 +23,26 @@
       (Pronoun -> he she it these those that))
 )
 
-(defvar *grammar* *simple-grammar*
+(defparameter *simple-math*
+  '((addition add-operator num num)
+    (subtraction sub-operator num num)
+    (multiplication mult-operator num num)
+    (division div-operator num num))
+)
+
+(defparameter *simple-symbols*
+  '((add-operator . (+))
+    (sub-operator . (-))
+    (mult-operator . (*))
+    (div-operator . (/))
+    (num 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15))
+)
+
+(defvar *grammar* *simple-math*
   "This is here because variables CAN be changed at runtime, parameters cannot"
 )
 
-(defvar *vocabulary* *simple-vocabulary*
+(defvar *vocabulary* *simple-symbols*
   "Set the desired vocabulary to a simple set"
 )
 
@@ -45,11 +60,21 @@
   "Returns a list of the possible rewrites for this category. Return set of vocabulary if it is desired"
   ;(format t "category ~S~%, member ~S~%" category (assoc category *vocabulary*))  
   ; Commented code sucks, but the abov is educational for me
-  (let ((association nil)))
   (cond
     ((not (null (setf association (assoc category *vocabulary*)))) association)
     (t (rule-rhs (assoc category *grammar*)))
   )
+)
+
+(defun get-grammar (category)
+  "Returns all grammar associations"
+  (rest (assoc category *grammar*))
+)
+
+(defun get-vocab (category)
+  "Returns all vocab associations"
+  (print (rest (assoc category *vocabulary*)))
+  (rest (assoc category *vocabulary*))
 )
 
 (defun random-elt (choices)
