@@ -4,6 +4,7 @@
 
 (defun custom-grammar (phrase)
   (let ((is-vocab nil) (is-grammar nil)))
+  (print phrase)
   (cond
     ((listp phrase) (mappend #'custom-grammar phrase))  ; Phrase is a list
     ((not (null (setf is-grammar (get-grammar phrase)))) (custom-grammar is-grammar))
