@@ -7,7 +7,7 @@
 (defun generate-efficiency (phrase)
   (let ((choices nil)))
   (cond
-    ((listp phrase) (mappend #'generate-efficiency phrase))  ; Phrase is a list
+    ((listp phrase) (mappend #'append #'generate-efficiency phrase))  ; Phrase is a list
     ((not (null (setf choices (rewrites phrase)))) (generate-efficiency (random-elt choices)))
     (t (list phrase))
   )

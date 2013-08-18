@@ -31,10 +31,10 @@
 )
 
 (defparameter *simple-symbols*
-  '((add-operator + +)
-    (sub-operator . -)
-    (mult-operator . *)
-    (div-operator / /)
+  '((add-operator . (+))
+    (sub-operator . (-))
+    (mult-operator . (*))
+    (div-operator . (/))
     (num 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15))
 )
 
@@ -51,7 +51,6 @@
   ;(format t "category ~S~%, member ~S~%" category (assoc category *vocabulary*))  
   ; Commented code sucks, but the abov is educational for me
   ;(print "ASSOC")
-  (print (get-vocab category))
   (cond
     ((not (null (setf association (get-vocab category)))) association)
     (t (get-grammar category))
@@ -74,8 +73,7 @@
   (elt choices (random (length choices)))
 )
 
-(defun mappend (fn list-)
+(defun mappend (apply-fn mapcar-fn list-)
   "Apply to each element of the list and append the results"
-  (print 'MAPCAR)
-  (apply #'append (mapcar fn list-))
+  (apply apply-fn (mapcar mapcar-fn list-))
 )

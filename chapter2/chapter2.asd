@@ -7,7 +7,7 @@
   :license "MIT"
   :components ((:file "package")
                (:file "chapter2")
-               (:file "generate-rewrite")
-               (:file "generate-efficiency")
-               (:file "custom-grammar")))
+               (:file "ex1")
+               (:file "ex2")
+               (:file "ex3")))
 

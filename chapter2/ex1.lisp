@@ -10,7 +10,7 @@
 (defun generate-rewrite (phrase)
   (let ((choices nil)))
   (cond
-    ((listp phrase) (mappend #'generate-rewrite phrase))  ; Phrase is a list
+    ((listp phrase) (mappend #'append #'generate-rewrite phrase))  ; Phrase is a list
     ((setf choices (rewrites phrase)) (generate-rewrite (random-elt choices)))
     (t (list phrase))
   )
