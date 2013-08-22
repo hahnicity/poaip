@@ -11,6 +11,6 @@
   )
 )
 
-(defun ex-three-main (expr)
-  (print-dot-notation expr)
+(defun ex-three-main (func input)
+  (print-dot-notation (func input))
 )
